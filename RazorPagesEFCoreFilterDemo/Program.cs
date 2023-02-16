@@ -1,4 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using RazorPagesEFCoreFilterDemo.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString =
+    builder.Configuration.GetConnectionString("Zoo")
+        ?? throw new InvalidOperationException("Connection string 'Zoo' not found.");
+
+builder.Services.AddDbContext<ZooContext>(options =>
+    options.UseSqlServer(connectionString));
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();
