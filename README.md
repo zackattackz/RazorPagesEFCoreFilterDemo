@@ -1,10 +1,11 @@
 # Razor Pages Ef Core Filter Demo
 
 This is a *simple* demo application to showcase
-The Predicate Filter Pattern in use with Razor Pages as the UI and EF Core as the DAL
+my Subclass Filter feature added to [Schick.FilterExpressionCreator](https://github.com/fschick/FilterExpressionCreator)
+in [my fork](https://github.com/zackattackz/FilterExpressionCreator/tree/SubclassFilters)
 
 By simple, I mean that the project is not structured with best practices in mind,
-but it is structured to best showcase the filter.
+but it is structured to best showcase the feature.
 
 ## Requirements
 
@@ -37,7 +38,7 @@ The Animal class hierarchy is defined as follows :
         
 (there are more animals in the world of course, but lets keep it simple)
 
-The application consists of the following routes:
+The application consists of the following routes (TODO):
 * /Animals
 * /Animals/Mammals
 * /Animals/Reptiles
@@ -46,9 +47,9 @@ The application consists of the following routes:
 * /Animals/Reptiles/Crocodiles
 * /Animals/Reptiles/Turtles
 
-All of which lead to the same page (/Pages/AnimalList), it displays an overview of all the animals in the zoo.
+All of which lead to the same page (/Pages/Animals/List), it displays an overview of all the animals in the zoo.
 
-There is also a /Animal?id=xxx route that will show specific detailed information about a given animal (/Pages/Animal).
+There is also a /Animal?id=xxx route that will show specific detailed information about a given animal (/Pages/Animals/Single).
 
 By using a more specific route, more specific filters will be applied (/Animals/Mammals will only list all Mammals).
 
