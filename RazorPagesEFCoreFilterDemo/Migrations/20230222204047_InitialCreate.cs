@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace RazorPagesEFCoreFilterDemo.Data.Migrations
+namespace RazorPagesEFCoreFilterDemo.Migrations
 {
     public partial class InitialCreate : Migration
     {
@@ -130,21 +130,21 @@ namespace RazorPagesEFCoreFilterDemo.Data.Migrations
                 name: "MammalHairColors",
                 columns: table => new
                 {
-                    HairColorsId = table.Column<int>(type: "int", nullable: false),
-                    MammalsId = table.Column<int>(type: "int", nullable: false)
+                    MammalId = table.Column<int>(type: "int", nullable: false),
+                    ColorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MammalHairColors", x => new { x.HairColorsId, x.MammalsId });
+                    table.PrimaryKey("PK_MammalHairColors", x => new { x.MammalId, x.ColorId });
                     table.ForeignKey(
-                        name: "FK_MammalHairColors_Animals_MammalsId",
-                        column: x => x.MammalsId,
+                        name: "FK_MammalHairColors_Animals_MammalId",
+                        column: x => x.MammalId,
                         principalTable: "Animals",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MammalHairColors_Colors_HairColorsId",
-                        column: x => x.HairColorsId,
+                        name: "FK_MammalHairColors_Colors_ColorId",
+                        column: x => x.ColorId,
                         principalTable: "Colors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -188,9 +188,9 @@ namespace RazorPagesEFCoreFilterDemo.Data.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_MammalHairColors_MammalsId",
+                name: "IX_MammalHairColors_ColorId",
                 table: "MammalHairColors",
-                column: "MammalsId");
+                column: "ColorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

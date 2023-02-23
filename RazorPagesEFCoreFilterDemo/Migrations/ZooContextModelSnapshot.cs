@@ -3,19 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RazorPagesEFCoreFilterDemo.Data;
 
 #nullable disable
 
-namespace RazorPagesEFCoreFilterDemo.Data.Migrations
+namespace RazorPagesEFCoreFilterDemo.Migrations
 {
     [DbContext(typeof(ZooContext))]
-    [Migration("20230216184610_InitialCreate")]
-    partial class InitialCreate
+    partial class ZooContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,21 +21,6 @@ namespace RazorPagesEFCoreFilterDemo.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("ColorMammal", b =>
-                {
-                    b.Property<int>("HairColorsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MammalsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("HairColorsId", "MammalsId");
-
-                    b.HasIndex("MammalsId");
-
-                    b.ToTable("MammalHairColors", (string)null);
-                });
 
             modelBuilder.Entity("RazorPagesEFCoreFilterDemo.Models.Animal", b =>
                 {
@@ -88,6 +71,18 @@ namespace RazorPagesEFCoreFilterDemo.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CanineTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Dog"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Wolf"
+                        });
                 });
 
             modelBuilder.Entity("RazorPagesEFCoreFilterDemo.Models.Color", b =>
@@ -117,6 +112,32 @@ namespace RazorPagesEFCoreFilterDemo.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Colors");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Hex = "ff0000",
+                            Name = "Red"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Hex = "0000ff",
+                            Name = "Blue"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Hex = "008000",
+                            Name = "Green"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Hex = "808080",
+                            Name = "Gray"
+                        });
                 });
 
             modelBuilder.Entity("RazorPagesEFCoreFilterDemo.Models.CrocodileType", b =>
@@ -135,6 +156,60 @@ namespace RazorPagesEFCoreFilterDemo.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CrocodileTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Saltwater"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Nile"
+                        });
+                });
+
+            modelBuilder.Entity("RazorPagesEFCoreFilterDemo.Models.MammalHairColor", b =>
+                {
+                    b.Property<int>("MammalId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ColorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MammalId", "ColorId");
+
+                    b.HasIndex("ColorId");
+
+                    b.ToTable("MammalHairColors");
+
+                    b.HasData(
+                        new
+                        {
+                            MammalId = 1,
+                            ColorId = 1
+                        },
+                        new
+                        {
+                            MammalId = 2,
+                            ColorId = 4
+                        },
+                        new
+                        {
+                            MammalId = 5,
+                            ColorId = 1
+                        },
+                        new
+                        {
+                            MammalId = 5,
+                            ColorId = 2
+                        },
+                        new
+                        {
+                            MammalId = 6,
+                            ColorId = 4
+                        });
                 });
 
             modelBuilder.Entity("RazorPagesEFCoreFilterDemo.Models.PrimateType", b =>
@@ -153,6 +228,18 @@ namespace RazorPagesEFCoreFilterDemo.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PrimateTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Chimpanzee"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Orangutan"
+                        });
                 });
 
             modelBuilder.Entity("RazorPagesEFCoreFilterDemo.Models.TurtleType", b =>
@@ -171,6 +258,18 @@ namespace RazorPagesEFCoreFilterDemo.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TurtleTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Box"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Wood"
+                        });
                 });
 
             modelBuilder.Entity("RazorPagesEFCoreFilterDemo.Models.Mammal", b =>
@@ -208,6 +307,26 @@ namespace RazorPagesEFCoreFilterDemo.Data.Migrations
                     b.HasIndex("CanineTypeId");
 
                     b.HasDiscriminator().HasValue("Canine");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BirthDate = new DateTime(1963, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Clifford",
+                            Sex = "M",
+                            CanineTypeId = 1,
+                            HowlVolume = 100
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BirthDate = new DateTime(2003, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Legoshi",
+                            Sex = "M",
+                            CanineTypeId = 2,
+                            HowlVolume = 9001
+                        });
                 });
 
             modelBuilder.Entity("RazorPagesEFCoreFilterDemo.Models.Crocodile", b =>
@@ -223,6 +342,30 @@ namespace RazorPagesEFCoreFilterDemo.Data.Migrations
                     b.HasIndex("CrocodileTypeId");
 
                     b.HasDiscriminator().HasValue("Crocodile");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            BirthDate = new DateTime(1962, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Wally Gator",
+                            Sex = "M",
+                            EggColorId = 3,
+                            ScaleHardness = 10,
+                            BiteForce = 2,
+                            CrocodileTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BirthDate = new DateTime(2003, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Allie Gator",
+                            Sex = "F",
+                            EggColorId = 2,
+                            ScaleHardness = 20,
+                            BiteForce = 5,
+                            CrocodileTypeId = 1
+                        });
                 });
 
             modelBuilder.Entity("RazorPagesEFCoreFilterDemo.Models.Primate", b =>
@@ -238,6 +381,26 @@ namespace RazorPagesEFCoreFilterDemo.Data.Migrations
                     b.HasIndex("PrimateTypeId");
 
                     b.HasDiscriminator().HasValue("Primate");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 5,
+                            BirthDate = new DateTime(2010, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Betsy",
+                            Sex = "F",
+                            GameHighScore = 25,
+                            PrimateTypeId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BirthDate = new DateTime(2010, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Fred",
+                            Sex = "M",
+                            GameHighScore = 24,
+                            PrimateTypeId = 1
+                        });
                 });
 
             modelBuilder.Entity("RazorPagesEFCoreFilterDemo.Models.Turtle", b =>
@@ -253,21 +416,49 @@ namespace RazorPagesEFCoreFilterDemo.Data.Migrations
                     b.HasIndex("TurtleTypeId");
 
                     b.HasDiscriminator().HasValue("Turtle");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 7,
+                            BirthDate = new DateTime(1999, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Slowpoke",
+                            Sex = "F",
+                            EggColorId = 1,
+                            ScaleHardness = 1,
+                            ShellHardness = 100,
+                            TurtleTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            BirthDate = new DateTime(1888, 8, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Ol' Travis",
+                            Sex = "M",
+                            EggColorId = 4,
+                            ScaleHardness = 500,
+                            ShellHardness = 1000,
+                            TurtleTypeId = 2
+                        });
                 });
 
-            modelBuilder.Entity("ColorMammal", b =>
+            modelBuilder.Entity("RazorPagesEFCoreFilterDemo.Models.MammalHairColor", b =>
                 {
-                    b.HasOne("RazorPagesEFCoreFilterDemo.Models.Color", null)
+                    b.HasOne("RazorPagesEFCoreFilterDemo.Models.Color", "Color")
                         .WithMany()
-                        .HasForeignKey("HairColorsId")
+                        .HasForeignKey("ColorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RazorPagesEFCoreFilterDemo.Models.Mammal", null)
+                    b.HasOne("RazorPagesEFCoreFilterDemo.Models.Mammal", "Mammal")
                         .WithMany()
-                        .HasForeignKey("MammalsId")
+                        .HasForeignKey("MammalId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Color");
+
+                    b.Navigation("Mammal");
                 });
 
             modelBuilder.Entity("RazorPagesEFCoreFilterDemo.Models.Reptile", b =>
