@@ -1,0 +1,26 @@
+﻿@page "/Animals/{id:int}"
+
+@using RazorPagesEFCoreFilterDemo.Models
+@model RazorPagesEFCoreFilterDemo.Pages.Animals.ListModel
+
+<table>
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Type</td>
+            <td>Birthday</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Animal animal in Model.Animals) {
+            <tr>
+                <td>@animal.Id</td>
+                <td>@animal.Name</td>
+                <td>@animal.Type</td>
+                <td>@animal.BirthDate?.ToString("MM/dd/yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-page="/Index ">Back</a>

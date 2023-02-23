@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using RazorPagesEFCoreFilterDemo.Data;
+using RazorPagesEFCoreFilterDemo.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IZooRepository, ZooRepository>();
 
 var connectionString =
     builder.Configuration.GetConnectionString("Zoo")

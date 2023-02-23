@@ -3,8 +3,46 @@
 @{
     ViewData["Title"] = "Home page";
 }
+<ul>
+    <li><a asp-page="/Animals/List" asp-route-id="1">All Animals</a></li>
+    <li><a asp-page="/Animals/List" asp-route-id="2">Only Mammals</a></li>
+    <li><a asp-page="/Animals/List" asp-route-id="3">Only Female Mammals</a></li>
+    <li><a asp-page="/Animals/List" asp-route-id="4">Only Female Mammals, but include all other animals</a></li>
+    <li><a asp-page="/Animals/List" asp-route-id="5">Only Female Mammals or Only Male Reptiles</a></li>
+    <li><a asp-page="/Animals/List" asp-route-id="6">Only Canines</a></li>
+    <li><a asp-page="/Animals/List" asp-route-id="7">Only Turtles with a ScaleHardness > 10 and a ShellHardness > 10</a></li>
+    <li><a asp-page="/Animals/List" asp-route-id="8">Only Reptiles with ScaleHardness > 10, only Turtles with a ShellHardness > 10, only Crocodiles with a BiteForce < 10</a></li>
+</ul>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+@*<h2>Visit one of the following routes to see the animals</h2>
+<table>
+    <tr>
+        <td>All:</td>
+        <td><a asp-page="/Animals/List">/Animals</a></td>
+    </tr>
+    <tr>
+        <td>Mammals Only:</td>
+        <td><a>/Animals/Mammals</a></td>
+    </tr>
+    <tr>
+        <td>Reptiles Only:</td>
+        <td><a>/Animals/Reptiles</a></td>
+    </tr>
+    <tr>
+        <td>Canines Only:</td>
+        <td><a>/Animals/Mammals/Canines</a></td>
+    </tr>
+    <tr>
+        <td>Primates Only:</td>
+        <td><a>/Animals/Mammals/Primates</a></td>
+    </tr>
+    <tr>
+        <td>Crocodiles Only:</td>
+        <td><a>/Animals/Reptiles/Crocodiles</a></td>
+    </tr>
+    <tr>
+        <td>Turtles Only:</td>
+        <td><a>/Animals/Reptiles/Turtles</a></td>
+    </tr>
+</table>*@
